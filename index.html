@@ -1,36 +1,72 @@
 <!doctype html>
 <html>
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Appreciar</title>
-        <meta name="description" content="Consultá los mejores precios de los productos que buscás...">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Appreciar</title>
+    <meta name="description" content="Consultá los mejores precios de los productos que buscás...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" href="apple-touch-icon.png">
-        <!-- Place favicon.ico in the root directory -->
+    <link rel="stylesheet" href="css/main.css">
+  	<!-- Angular Material style sheet -->
+  	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
 
-<body>
+<body ng-app="Appreciar">
 
-	<h1>el titulo del massi</h1>
+	<header>
 
+		<md-toolbar>
+	      <div class="md-toolbar-tools">
+	        <md-button class="md-icon-button" aria-label="Settings">
+	          <md-icon md-svg-icon="../img/icons/menu.svg"></md-icon>
+	        </md-button>
+	        <h2>
+	          <span>Toolbar with Icon Buttons</span>
+	        </h2>
+	        <span flex></span>
+	        <md-button class="md-icon-button" aria-label="Favorite">
+	          <md-icon md-svg-icon="../img/inglow.png"></md-icon>
+	        </md-button>
+	        <md-button class="md-icon-button" aria-label="More">
+	          <md-icon md-svg-icon="../img/icons/more_vert.svg"></md-icon>
+	        </md-button>
+	      </div>
+	     </md-toolbar>
+
+		<h1>titulo principal</h1>
+		<p>menu de la aplicacion</p>
+	</header>
+
+	
 	<section>
 
-	<h2>aca esta la bestia pop</h2>
-	<div id="123">
-		<p>este es un parrafo de prueba creado por el futuro mago del front y del back, amado por los niños, odiado por los dorimas, con ustedessssss, el graaaaaaannnnn maaaaaasssssssssiiiiiii...</p>
-	</div>
+		<h2>ejemplo te titulo dos</h2>
+		<div id="123">
+			<p>este es un parrafo de prueba</p>
+		</div>
 
 	</section>
 
 	<footer>
-		<h2>Esta es la pata</h2>
+		<h2>este es un h2 en el footer</h2>
 	</footer>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+
+  <!-- Modules --> 
+  <script src="js/app.js"></script>
+
 
 </body>
 </html>
