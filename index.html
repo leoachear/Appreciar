@@ -14,10 +14,9 @@
 
 </head>
 
-<body ng-app="Appreciar">
+<body ng-app="Appreciar" ng-controller="MainController">
 
 	<header>
-
 		<md-toolbar>
 	      <div class="md-toolbar-tools">
 	        <md-button class="md-icon-button" aria-label="Settings">
@@ -34,256 +33,29 @@
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
 	      </div>
-	     </md-toolbar>
-
+	    </md-toolbar>
 		<!-- <h1>titulo principal</h1>
 		<p>menu de la aplicacion</p> -->
 	</header>
 
+	<section id="listado-principal">
 
-
-
-<section id="listado-principal">
-
-<!-- Busqueda -->
-<div style="align:center;width:100%;">
-  <md-input-container>
-  <label>Búsqueda</label>
-  <input style="width:400px;" ng-model="user.address">
-  </md-input-container>
-</div>
-
-<!-- Listado de productos -->
-  <md-content class="md-padding layout-xs-column layout-row" layout-xs="column">
-
-		<div flex-xs flex-gt-xs="50" layout="column">
-      <md-card>
-		    <img ng-src="img/products/savora.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
+		<!-- Busqueda -->
+		<div style="align:center;width:100%;">
+		  <md-input-container>
+		  <label>Búsqueda</label>
+		  <input style="width:400px;" ng-model="user.address">
+		  </md-input-container>
 		</div>
+		
+		<!-- Listado de productos -->
+		<md-content class="md-padding layout-xs-column layout-row" layout-xs="column">
+			<div flex-xs flex-gt-xs="50" layout="column" ng-repeat="prod in productos" >
+				<product-card producto=prod></product-card>
+			</div>	
+		</md-content>	
 
-
-
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/aceitenatura.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/bucattiniluchetti.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/cocacolalitroymedio.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-	</md-content>
-  <md-content class="md-padding layout-xs-column layout-row" layout-xs="column" layout="row">
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/laserenisima.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/milaespinacagranja.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/municioneslucheti.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-		<div flex-xs flex-gt-xs="50" layout="column">
-		  <md-card>
-		    <img ng-src="img/products/savora.jpg" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out">
-		    <md-card-title>
-		      <md-card-title-text>
-		        <span class="md-headline">Icon action buttons</span>
-		      </md-card-title-text>
-		    </md-card-title>
-		    <md-card-content>
-		      <p>
-		        The titles
-		      </p>
-		    </md-card-content>
-		    <md-card-actions layout="row" layout-align="end center">
-		      <md-button class="md-icon-button" aria-label="Favorite">
-		        <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Settings">
-		        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-		      </md-button>
-		      <md-button class="md-icon-button" aria-label="Share">
-		        <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
-		      </md-button>
-		    </md-card-actions>
-		  </md-card>
-		</div>
-	</md-content>
-
-</section>
-
-
-
-	<!-- <section>
-
-		<h2>ejemplo te titulo dos</h2>
-		<div id="123">
-			<p>este es un parrafo de prueba</p>
-		</div>
-
-	</section> -->
+	</section>
 
   <footer style="background-color:#3a3a3a; height:10em; padding:1em;">
   	<p style="color:white;text-align:center;">Appreciar || Copyright 2016</p>
@@ -304,6 +76,13 @@
   <!-- Modules -->
   <script src="js/app.js"></script>
 
+  <!-- Controllers -->
+  <script src="js/controllers/MainController.js"></script>
+
+  <!-- Directives -->
+  <script src="js/directives/productCard.js"></script>
+
+  <!-- Services -->
 
 </body>
 </html>
