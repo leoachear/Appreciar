@@ -3,44 +3,46 @@ app.controller('MainController', ['$scope', function($scope){
 	$scope.productos = [
 	{
 		img: 'img/products/savora.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Savora Clásica',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/aceitenatura.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Aceitunas',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/bucattiniluchetti.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Fideos Bucattini',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/cocacolalitroymedio.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Coca Cola 1.5L',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/laserenisima.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Leche La Serenísima',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/milaespinacagranja.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Mila de Espinaca',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/municioneslucheti.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Fideos Municiones',
 		desc: 'The titles'
 	},
 	{
 		img: 'img/products/savora.jpg',
-		titulo: 'Icon action buttons',
+		titulo: 'Savora Clásica',
 		desc: 'The titles'
 	}
 	];
+
+
 
 }]);

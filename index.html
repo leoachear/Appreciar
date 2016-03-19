@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="css/main.css">
 
 </head>
-
 <body ng-app="Appreciar" ng-controller="MainController">
 
+<!-- CABECERA Y MENU -->
 	<header>
 		<md-toolbar>
 	      <div class="md-toolbar-tools">
@@ -25,38 +25,59 @@
 	        <h2>
 	          <span>Appreciar</span>
 	        </h2>
-	        <span flex></span>
+
+
+          <md-input-container style="background-color:white; margin-left:2em;">
+          <label>Búsqueda</label>
+          <input style="width:400px; " ng-model="user.address">
+          </md-input-container>
+
+          <span flex></span>
 	        <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 	        </md-button>
+          <span><h3><a href="#">Postear</a></h3></span>
 	        <md-button class="md-icon-button" aria-label="More">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
 	      </div>
 	    </md-toolbar>
-		<!-- <h1>titulo principal</h1>
-		<p>menu de la aplicacion</p> -->
 	</header>
 
-	<section id="listado-principal">
+<!-- Busqueda -->
+<section style="padding: 2em 0 2em 0;">
+<!-- aca estaba antes la busqueda, por si lo queremos bajar de nuevo -->
 
-		<!-- Busqueda -->
-		<div style="align:center;width:100%;">
-		  <md-input-container>
-		  <label>Búsqueda</label>
-		  <input style="width:400px;" ng-model="user.address">
-		  </md-input-container>
-		</div>
-		
+<!-- igual pongo en el mismo lugar los radiobuttons -->
+<md-radio-group ng-model="data.group1" flex layout='row'>
+  <span flex></span>
+  <md-radio-button value="Mapa">Mapa</md-radio-button>
+  <md-radio-button value="Lista">Lista</md-radio-button>
+  <md-radio-button value="Visual">Visual</md-radio-button>
+  <span flex></span>
+</md-radio-group>
+</section>
+
+<!-- LISTADO PRINCIPAL -->
+	<section id="listado-principal">
 		<!-- Listado de productos -->
-		<md-content class="md-padding layout-xs-column layout-row" layout-xs="column">
-			<div flex-xs flex-gt-xs="50" layout="column" ng-repeat="prod in productos" >
+		<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
+			<div flex="auto" ng-repeat="prod in productos" >
 				<product-card producto=prod></product-card>
-			</div>	
-		</md-content>	
+			</div>
+		</md-content>
 
 	</section>
 
+<!-- Banner cosas -->
+<section align="center" style="padding:1em 0 1em 0; background-color:black;">
+  <a href="http://www.google.com.ar" target="_blank">
+    <img src="img/products/bannerCoca.png" alt="CocaCola" />
+  </a>
+</section>
+
+
+<!-- FOOTER -->
   <footer style="background-color:#3a3a3a; height:10em; padding:1em;">
   	<p style="color:white;text-align:center;">Appreciar || Copyright 2016</p>
   	<p style="color:white;text-align:center;">Twitter || Facebook</p>
@@ -71,7 +92,6 @@
 
   <!-- Angular Material Library -->
   <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-
 
   <!-- Modules -->
   <script src="js/app.js"></script>
