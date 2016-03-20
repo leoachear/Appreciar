@@ -19,9 +19,26 @@
 	<header>
 		<md-toolbar>
 	      <div class="md-toolbar-tools">
-	        <md-button class="md-icon-button" aria-label="Settings">
+	        <!--
+          <md-button class="md-icon-button" aria-label="Settings">
 	          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 	        </md-button>
+          -->
+
+          <md-menu>
+            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
+              <md-icon md-menu-origin md-svg-icon="img/icons/menu.svg"></md-icon>
+            </md-button>
+            <md-menu-content width="6">
+              <md-menu-item ng-repeat="item in [1, 2, 3]">
+                <md-button ng-click="ctrl.announceClick($index)">
+                  <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
+                  Option {{item}}
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
+          
 	        <h2>
 	          <span>Appreciar</span>
 	        </h2>
