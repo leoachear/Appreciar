@@ -1,5 +1,17 @@
 app.controller('MainController', ['$scope', function($scope){
 
+	$scope.prodPrueba = [
+	{
+		img: 'img/products/savora.jpg',
+		titulo: 'Savora Clásica',
+		desc: 'The titles'
+	},
+	{
+		img: 'img/products/savora.jpg',
+		titulo: 'Savora Clásica',
+		desc: 'The titles'
+	}
+	]
 	$scope.productos = [
 	{
 		img: 'img/products/savora.jpg',

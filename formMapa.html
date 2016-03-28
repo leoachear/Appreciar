@@ -11,48 +11,35 @@
   	<!-- Angular Material style sheet -->
   	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- Google Maps -->
+    <script src="https://maps.google.com/maps/api/js?libraries=placeses,visualization,drawing,geometry,places"></script>
+    <script src="https://rawgit.com/allenhwkim/angularjs-google-maps/master/build/scripts/ng-map.js"></script>
+
 </head>
 
-<body ng-app="Appreciar" ng-controller="MainController">
+<body ng-app="Appreciar" ng-cloak>
 
 <!-- CABECERA Y MENU -->
 	<header>
 		<md-toolbar>
 	      <div class="md-toolbar-tools">
-	        <!--
-          <md-button class="md-icon-button" aria-label="Settings">
+	        <md-button class="md-icon-button" aria-label="Settings">
 	          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 	        </md-button>
-          -->
-
-          <md-menu>
-            <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-              <md-icon md-menu-origin md-svg-icon="img/icons/menu.svg"></md-icon>
-            </md-button>
-            <md-menu-content width="6">
-              <md-menu-item ng-repeat="item in [1, 2, 3]">
-                <md-button ng-click="ctrl.announceClick($index)">
-                  <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
-                  Option {{item}}
-                </md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
-          
 	        <h2>
 	          <span>Appreciar</span>
-	        </h2>
-          <!-- ACÁ QUEDÓ LA BÚSQUEDA AHORA -->
-          <md-input-container style="background-color:white; margin-left:2em;">
-          <label>Búsqueda</label>
-          <input style="width:400px; " ng-model="user.address">
-          </md-input-container>
-          <!-- HASTA ACÁ -->
+          </h2>
           <span flex></span>
 	        <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 	        </md-button>
-          <span><h3><a href="formAlta.html">Postear</a></h3></span>
 	        <md-button class="md-icon-button" aria-label="More">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
@@ -60,34 +47,17 @@
 	    </md-toolbar>
 	</header>
 
-  <!-- Busqueda (pasó para arriba)-->
-  <section style="padding: 2em 0 2em 0;">
-  <!-- aca estaba antes la busqueda, por si lo queremos bajar de nuevo -->
-  <!-- igual pongo en el mismo lugar los radiobuttons -->
-  <md-radio-group ng-model="data.group1" flex layout='row'>
-    <span flex></span>
-    <md-radio-button value="Mapa">Mapa</md-radio-button>
-    <md-radio-button value="Lista">Lista</md-radio-button>
-    <md-radio-button value="Visual">Visual</md-radio-button>
-    <span flex></span>
-  </md-radio-group>
-  </section>
 
-  <!-- LISTADO PRINCIPAL -->
-  <section id="listado-principal">
-		<!-- Listado de productos -->
-		<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
-			<div flex="auto" ng-repeat="prod in productos" >
-				<product-card producto=prod></product-card>
-			</div>
-		</md-content>
-  </section>
+  <section id="alta-producto" style="height:500px;">
 
-  <!-- Banner cosas -->
-  <section align="center" style="padding:1em 0 1em 0; background-color:black;">
-    <a href="http://www.google.com.ar" target="_blank">
-      <img src="img/products/bannerCoca.png" alt="CocaCola" />
-    </a>
+    <h3>Dónde lo compraste?</h3>
+    <ng-map center="[40.74, -74.18]"></ng-map>
+
+    <!-- GOOGLE MAPS -->
+
+
+
+
   </section>
 
 
@@ -98,6 +68,8 @@
   </footer>
 
 
+  <!-- MAPS ANGULAR -->
+  <script src="js/libs/angular-google-maps.min.js" charset="utf-8"></script>
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
@@ -112,6 +84,7 @@
 
   <!-- Controllers -->
   <script src="js/controllers/MainController.js"></script>
+  <script src="js/controllers/FinderController.js"></script>
 
   <!-- Directives -->
   <script src="js/directives/productCard.js"></script>

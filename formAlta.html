@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Appreciar</title>
+    <meta name="description" content="Consultá los mejores precios de los productos que buscás...">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  	<!-- Angular Material style sheet -->
+  	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+<body ng-app="Appreciar" ng-controller="FinderController as ctrl" ng-cloak>
+
+<!-- CABECERA Y MENU -->
+	<header>
+		<md-toolbar>
+	      <div class="md-toolbar-tools">
+	        <md-button class="md-icon-button" aria-label="Settings">
+	          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+	        </md-button>
+	        <h2>
+	          <span>Appreciar</span>
+          </h2>
+          <span flex></span>
+	        <md-button class="md-icon-button" aria-label="Favorite">
+	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
+	        </md-button>
+	        <md-button class="md-icon-button" aria-label="More">
+	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+	        </md-button>
+	      </div>
+	    </md-toolbar>
+	</header>
+
+
+  <section id="alta-producto" ng-cloak>
+
+    <h3>Sobre qué producto querés postear?</h3>
+
+    <!-- AUTOCOMPLETE -->
+    <md-content class="md-padding" style="height:500px;">
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete
+        ng-disabled="ctrl.isDisabled"
+        md-no-cache="ctrl.noCache"
+        md-selected-item="ctrl.selectedItem"
+        md-search-text-change="ctrl.searchTextChange(ctrl.searchText)"
+        md-search-text="ctrl.searchText"
+        md-selected-item-change="ctrl.selectedItemChange(item)"
+        md-items="item in ctrl.querySearch(ctrl.searchText)"
+        md-item-text="item.display"
+        md-min-length="3"
+        placeholder="Seleccionar Producto">
+          <md-item-template>
+          <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.display}}</span>
+          </md-item-template>
+          <md-not-found>
+          El producto "{{ctrl.searchText}}" no está en nuestra lista.
+          <a ng-click="ctrl.newState(ctrl.searchText)">Quiero crearlo</a>
+          </md-not-found>
+        </md-autocomplete>
+      </form>
+      <button onclick="location.href='formMapa.html'" id="seguir" style="margin-top:1em;" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+        <i class="material-icons">keyboard_arrow_right
+        </i>
+      </button>
+      <div class="mdl-tooltip mdl-tooltip--large" for="seguir">Continuar</div>
+    </md-content>
+
+
+    <!-- Productos que se van filtrando?...... -->
+    <md-content class="md-padding layout-row" layout-xs="column" layout-wrap ng-cloak>
+      <div flex="auto">
+        <!-- ng-repeat="prod in ctrl.productosBuscar"  -->
+        <product-card producto=seleccionado</product-card>
+      </div>
+    </md-content>
+
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer style="background-color:#3a3a3a; height:10em; padding:1em;">
+  	<p style="color:white;text-align:center;">Appreciar || Copyright 2016</p>
+  	<p style="color:white;text-align:center;">Twitter || Facebook</p>
+  </footer>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
+
+  <!-- Modules -->
+  <script src="js/app.js"></script>
+
+  <!-- Controllers -->
+  <script src="js/controllers/MainController.js"></script>
+  <script src="js/controllers/FinderController.js"></script>
+
+  <!-- Directives -->
+  <script src="js/directives/productCard.js"></script>
+
+  <!-- Services -->
+
+</body>
+</html>
