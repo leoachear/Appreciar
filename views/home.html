@@ -1,0 +1,22 @@
+<!-- Busqueda (pasó para arriba)-->
+<section style="padding: 2em 0 2em 0;">
+  <!-- aca estaba antes la busqueda, por si lo queremos bajar de nuevo -->
+  <!-- igual pongo en el mismo lugar los radiobuttons -->
+  <md-radio-group ng-model="data.group1" flex layout='row'>
+    <span flex></span>
+    <md-radio-button value="Mapa">Mapa</md-radio-button>
+    <md-radio-button value="Lista">Lista</md-radio-button>
+    <md-radio-button value="Visual">Visual</md-radio-button>
+    <span flex></span>
+  </md-radio-group>
+</section>
+
+<!-- LISTADO PRINCIPAL -->
+<section id="listado-principal">
+	<!-- Listado de productos -->
+	<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
+		<div flex="auto" ng-repeat="prod in productos" >
+			<product-card producto=prod></product-card>
+		</div>
+	</md-content>
+</section>

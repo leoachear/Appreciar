@@ -42,6 +42,7 @@
 	        <h2>
 	          <span>Appreciar</span>
 	        </h2>
+
           <!-- ACÁ QUEDÓ LA BÚSQUEDA AHORA -->
           <md-input-container style="background-color:white; margin-left:2em;">
           <label>Búsqueda</label>
@@ -49,39 +50,21 @@
           </md-input-container>
           <!-- HASTA ACÁ -->
           <span flex></span>
+
 	        <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 	        </md-button>
+
           <span><h3><a href="formAlta.html">Postear</a></h3></span>
-	        <md-button class="md-icon-button" aria-label="More">
+	        
+          <md-button class="md-icon-button" aria-label="More">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
 	      </div>
 	    </md-toolbar>
 	</header>
 
-  <!-- Busqueda (pasó para arriba)-->
-  <section style="padding: 2em 0 2em 0;">
-  <!-- aca estaba antes la busqueda, por si lo queremos bajar de nuevo -->
-  <!-- igual pongo en el mismo lugar los radiobuttons -->
-  <md-radio-group ng-model="data.group1" flex layout='row'>
-    <span flex></span>
-    <md-radio-button value="Mapa">Mapa</md-radio-button>
-    <md-radio-button value="Lista">Lista</md-radio-button>
-    <md-radio-button value="Visual">Visual</md-radio-button>
-    <span flex></span>
-  </md-radio-group>
-  </section>
-
-  <!-- LISTADO PRINCIPAL -->
-  <section id="listado-principal">
-		<!-- Listado de productos -->
-		<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
-			<div flex="auto" ng-repeat="prod in productos" >
-				<product-card producto=prod></product-card>
-			</div>
-		</md-content>
-  </section>
+  <div ng-view></div>
 
   <!-- Banner cosas -->
   <section align="center" style="padding:1em 0 1em 0; background-color:black;">
@@ -100,6 +83,7 @@
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.2.28/angular-route.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
