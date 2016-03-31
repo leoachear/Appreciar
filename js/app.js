@@ -6,7 +6,12 @@ app.config(function($routeProvider) {
 			controller: 'MainController',
 			templateUrl: 'views/home.html'
 		})
+		.when('/altaForm',{
+			controller: 'FinderController',
+			templateUrl: 'views/altaForm.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
 });
+
