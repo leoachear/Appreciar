@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 			controller: 'FinderController',
 			templateUrl: 'views/altaForm.html'
 		})
+		.when('/mapaForm',{
+			controller: 'MapsController',
+			templateUrl: 'views/mapaForm.html'
+		})
 		.otherwise({
 			redirectTo: '/'
 		});
