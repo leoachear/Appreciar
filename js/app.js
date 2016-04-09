@@ -1,6 +1,7 @@
 var app = angular.module('Appreciar', ['ngMaterial','ngRoute']);
 
 app.config(function($routeProvider) {
+	console.log("carga ruta");
 	$routeProvider
 		.when('/',{
 			controller: 'MainController',
@@ -18,4 +19,3 @@ app.config(function($routeProvider) {
 			redirectTo: '/'
 		});
 });
-

@@ -1,5 +1,17 @@
 app.controller('MainController', ['$scope', function($scope){
 
+
+	var myDataRef = new Firebase('https://appreciar.firebaseio.com/Posts');
+	$scope.datosBase = [];
+
+	myDataRef.on("child_added", function(snapshot) {
+
+		$scope.datosBase.push(snapshot.val());
+console.log("carga datos");
+});
+
+
+
 	$scope.prodPrueba = [
 	{
 		img: 'img/products/savora.jpg',
@@ -54,6 +66,12 @@ app.controller('MainController', ['$scope', function($scope){
 		desc: 'The titles'
 	}
 	];
+
+
+
+
+
+
 
 
 

@@ -15,8 +15,8 @@
 <section id="listado-principal">
 	<!-- Listado de productos -->
 	<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
-		<div flex="auto" ng-repeat="prod in productos" >
-			<product-card producto=prod></product-card>
+		<div flex="auto" ng-repeat="p in datosBase">
+			<product-card producto=p></product-card>
 		</div>
 	</md-content>
 </section>

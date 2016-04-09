@@ -17,9 +17,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <!-- FIREBASE -->
+    <script src="https://cdn.firebase.com/js/client/2.2.1/firebase.js"></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+
 </head>
 
-<body ng-app="Appreciar" ng-controller="MainController">
+<body ng-app="Appreciar" ng-controller="MainController" ng-cloak>
 
 <!-- CABECERA Y MENU -->
 	<header>
@@ -44,7 +49,7 @@
               </md-menu-item>
             </md-menu-content>
           </md-menu>
-          
+
 	        <h2>
 	          <span>Appreciar</span>
 	        </h2>
@@ -62,7 +67,7 @@
 	        </md-button>
 
           <span><h3><a href="#/altaForm">Postear</a></h3></span>
-	        
+
           <md-button class="md-icon-button" aria-label="More">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
@@ -70,7 +75,7 @@
 	    </md-toolbar>
 	</header>
 
-  <div ng-view></div>
+  <div ng-view ng-cloak></div>
 
   <!-- Banner cosas -->
   <section align="center" style="padding:1em 0 1em 0; background-color:black;">
