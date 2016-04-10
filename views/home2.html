@@ -1,9 +1,9 @@
 <!-- LISTADO PRINCIPAL -->
-<section id="listado-principal">
+<section id="listado-principal" ng-controller="FiltroHomeController">
 	<!-- Listado de productos -->
-  <h4 align="center" >{{ tipoListado }}</h4>
+  <h4 align="center" >Home a la vuelta de Zona...</h4>
 	<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
-		<div flex="auto" ng-repeat="p in datosBase">
+		<div flex="auto" ng-repeat="p in datosHome">
 			<product-card producto=p></product-card>
 		</div>
 	</md-content>

@@ -24,7 +24,7 @@
 
 </head>
 
-<body ng-app="Appreciar" ng-controller="MainController" ng-cloak>
+<body ng-app="Appreciar" ng-controller="MainController">
 
 <!-- CABECERA Y MENU -->
 	<header>
@@ -35,16 +35,18 @@
 	          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
 	        </md-button>
           -->
-
           <md-menu>
             <md-button aria-label="Open demo menu" class="md-icon-button" ng-click="$mdOpenMenu($event)">
               <md-icon md-menu-origin md-svg-icon="img/icons/menu.svg"></md-icon>
             </md-button>
             <md-menu-content width="6">
-              <md-menu-item ng-repeat="item in [1, 2, 3]">
-                <md-button ng-click="ctrl.announceClick($index)">
+              <md-menu-item ng-repeat="item in menuOptions">
+                <!-- este que dejo comentado llama a una funcion del controlador, que tambien
+              esta comentada por ahora... ahora lo cambio para llamar directamente a una view. -->
+                <!-- <md-button ng-click="announceClick($index)"> -->
+                  <md-button ng-click="cambiarVista(menuOptions[$index].opcion)">
                   <md-icon md-menu-align-target md-svg-icon="call:no-sim"></md-icon>
-                  Option {{item}}
+                  {{item.nombre}}
                 </md-button>
               </md-menu-item>
             </md-menu-content>
@@ -53,44 +55,49 @@
 	        <h2>
 	          <span>Appreciar</span>
 	        </h2>
-
-          <!-- ACÁ QUEDÓ LA BÚSQUEDA AHORA -->
-          <md-input-container style="background-color:white; margin-left:2em;">
-          <label>Búsqueda</label>
-          <input style="width:400px; " ng-model="user.address">
-          </md-input-container>
-          <!-- HASTA ACÁ -->
           <span flex></span>
-
 	        <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 	        </md-button>
-
           <span><h3><a href="#/altaForm">Postear</a></h3></span>
-
           <md-button class="md-icon-button" aria-label="More">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
 	      </div>
 	    </md-toolbar>
 	</header>
+  <!-- Busqueda y opciones rapidas. -->
+  <section style="padding: 0.5em 0 0.5em 0;" align="center">
+    <!-- ACÁ QUEDÓ LA BÚSQUEDA AHORA -->
+    <md-input-container style="background-color:white; margin-left:2em;">
+    <label>Búsqueda</label>
+    <input style="width:20em; " ng-model="user.address">
+    </md-input-container>
+    <!-- HASTA ACÁ -->
+    <md-radio-group ng-model="data.group1" flex layout='row'>
+      <span flex></span>
+      <md-radio-button value="Mapa">Mapa</md-radio-button>
+      <md-radio-button value="Lista">Lista</md-radio-button>
+      <md-radio-button value="Visual">Visual</md-radio-button>
+      <span flex></span>
+    </md-radio-group>
+  </section>
 
-  <div ng-view ng-cloak></div>
+  <!-- VISTASS -->
+  <div ng-view></div>
 
   <!-- Banner cosas -->
   <section align="center" style="padding:1em 0 1em 0; background-color:black;">
     <a href="http://www.google.com.ar" target="_blank">
-      <img src="img/products/bannerCoca.png" alt="CocaCola" />
+      <img src="img/products/bannerCoca.png" alt="CocaCola" style="width:100vw;"/>
     </a>
   </section>
 
-
   <!-- FOOTER -->
   <footer style="background-color:#3a3a3a; height:10em; padding:1em;">
-  	<p style="color:white;text-align:center;">Appreciar || Copyright 2016</p>
+  	<p style="color:white;text-align:center;">Appreciar - Copyright 2016</p>
   	<p style="color:white;text-align:center;">Twitter || Facebook</p>
   </footer>
-
 
   <!-- Angular Material requires Angular.js Libraries -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -109,6 +116,8 @@
   <script src="js/controllers/MainController.js"></script>
   <script src="js/controllers/FinderController.js"></script>
   <script src="js/controllers/MapsController.js"></script>
+  <script src="js/controllers/FiltroZonaController.js"></script>
+  <!-- <script src="js/controllers/FiltroHomeController.js"></script> -->
 
   <!-- Directives -->
   <script src="js/directives/productCard.js"></script>

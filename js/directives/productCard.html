@@ -1,13 +1,13 @@
 <md-card>
-	<!-- <img ng-src="{{ producto.img }}" style="width:200px; height:200px;" class="md-card-image" alt="Washed Out"> -->
+	<img ng-src="{{ producto.img }}" style="width:250px; height:200px;" class="md-card-image" alt="Washed Out">
     <md-card-title>
       <md-card-title-text>
-        <a href="#" class="md-headline">{{producto.Nombre}}</a>
+        <a href="#" class="md-headline">{{ producto.nombre }}</a>
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
       <p>
-        {{ producto.Precio }}
+        {{ producto.desc + ' precio: ' + producto.precio }}
       </p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">

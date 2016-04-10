@@ -1,7 +1,6 @@
 var app = angular.module('Appreciar', ['ngMaterial','ngRoute']);
 
 app.config(function($routeProvider) {
-	console.log("carga ruta");
 	$routeProvider
 		.when('/',{
 			controller: 'MainController',
@@ -11,6 +10,14 @@ app.config(function($routeProvider) {
 			controller: 'FinderController',
 			templateUrl: 'views/altaForm.html'
 		})
+		.when('/homePorZona',{
+			controller: 'FiltroZonaController',
+			templateUrl: 'views/homePorZona.html'
+		})
+		// .when('/homeUltimas',{
+		// 	controller: 'FiltroHomeController',
+		// 	templateUrl: 'views/home2.html'
+		// })
 		.when('/mapaForm',{
 			controller: 'MapsController',
 			templateUrl: 'views/mapaForm.html'

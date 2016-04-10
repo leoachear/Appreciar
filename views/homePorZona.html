@@ -1,0 +1,10 @@
+<!-- LISTADO PRINCIPAL -->
+<section id="listado-principal" ng-controller="FiltroZonaController">
+	<!-- Listado de productos -->
+  <h4 align="center" >Listado por Zona</h4>
+	<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
+		<div flex="auto" ng-repeat="v in datosZona">
+			<product-card producto=v></product-card>
+		</div>
+	</md-content>
+</section>
