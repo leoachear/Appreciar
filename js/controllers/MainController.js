@@ -1,20 +1,22 @@
-app.controller('MainController', ['$scope', '$location', function($scope, $location){
+app.controller('MainController', ['$scope', '$location','productService', function($scope, $location, productService){
 
 	//lo pongo aca para que tenga un valor de entrada, luego se le cambia
 	//dependiendo de la opcion de menu seleccionada.
 	$scope.tipoListado = "Listado Home";
 
 	//var myDataRef = new Firebase('https://appreciar.firebaseio.com/Posts');
-	var myDataRef = new Firebase('https://brilliant-heat-4810.firebaseio.com/productos');
-	$scope.datosBase = [];
+	//var myDataRef = new Firebase('https://brilliant-heat-4810.firebaseio.com/productos');
+	//$scope.datosBase = [];
 	//limitToLast(5).
-	myDataRef.limitToLast(4).on("child_added", function(snapshot) {
+//	myDataRef.limitToLast(4).on("child_added", function(snapshot) {
 		//con el apply se "audida" lo que se esta cambiando para que angular lo actualice en la vista.
-		$scope.$apply(function(){
-			$scope.datosBase.push(snapshot.val());
-		});
-	});
+		//$scope.$apply(function(){
+			//$scope.datosBase.push(snapshot.val());
+		//});
 
+	//});
+
+	$scope.datosBase = productService.getProducts();
 
 	//array de opciones del menu principal
 	$scope.menuOptions = [
@@ -47,7 +49,7 @@ function porZona(){
 	console.log("entra al metodo");
 	$scope.datosBase = [];
 	myDataRef.limitToLast(8).on("child_added", function(snapshot) {
-		//con el apply se "audida" lo que se esta cambiando para que angular lo actualice en la vista.
+		//con el apply se "audita" lo que se esta cambiando para que angular lo actualice en la vista.
 		$scope.$apply(function(){
 			$scope.datosBase.push(snapshot.val());
 		});
