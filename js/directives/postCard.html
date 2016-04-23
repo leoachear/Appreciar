@@ -1,16 +1,16 @@
 <md-card>
-	<img ng-src="{{ producto.img }}" style="width:250px; height:200px;" class="md-card-image" alt="Washed Out">
+	<img ng-src="img/default.jpg" style="width:250px; height:200px;" class="md-card-image" alt="Washed Out">
     <md-card-title>
       <md-card-title-text>
-        <a href="#" class="md-headline">{{ producto.nombre }}</a>
+        <a href="#" class="md-headline">{{ post.producto.nombre }}</a>
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
       <p>
-        {{ producto.desc + ' precio: ' + producto.precio }}
+        {{ post.precio + ' PRECIO: ' + post.precio }}
       </p>
     </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
+    <!-- <md-card-actions layout="row" layout-align="end center">
       <md-button class="md-icon-button" aria-label="Favorite">
         <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
       </md-button>
@@ -20,5 +20,5 @@
       <md-button class="md-icon-button" aria-label="Share">
         <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
       </md-button>
-    </md-card-actions>
+    </md-card-actions> -->
 </md-card>

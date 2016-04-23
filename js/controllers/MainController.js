@@ -1,8 +1,8 @@
-app.controller('MainController', ['$scope', '$location','productService', function($scope, $location, productService){
+app.controller('MainController', ['$scope', '$location','postsService', 'productService', function($scope, $location, postsService, productService){
 
 	//lo pongo aca para que tenga un valor de entrada, luego se le cambia
 	//dependiendo de la opcion de menu seleccionada.
-	$scope.tipoListado = "Listado Home";
+	$scope.tipoListado = "Listado Home de Posts";
 
 	//var myDataRef = new Firebase('https://appreciar.firebaseio.com/Posts');
 	//var myDataRef = new Firebase('https://brilliant-heat-4810.firebaseio.com/productos');
@@ -16,7 +16,21 @@ app.controller('MainController', ['$scope', '$location','productService', functi
 
 	//});
 
-	$scope.datosBase = productService.getProducts();
+	//Leo los datos para llenar la view HOME.
+	$scope.datosBase = postsService.getPosts();
+
+
+	console.log("la concha de tu madre");
+	//for (  post in this.datosBase) {
+    //post.producto = productService.getProduct(post.codProd);
+		//console.log("la concha de tu madre");
+	// }
+
+	// for(i = 0; i < $scope.datosBase.length; i++){
+		//$scope.datosBase[i].producto = productService.getProduct(post.codProd);
+		//var algo = productService.getProduct(post.codProd);
+	// 	console.log($scope.datosBase[i].codProd);
+	// }
 
 	//array de opciones del menu principal
 	$scope.menuOptions = [

@@ -1,29 +1,15 @@
 app.service('productService', ['$q', function($q){
-  
-  // var service = {
-  //   function(){
-  //
-  //           var deferred = $q.defer();
-  //
-  //           var myDataRef = new Firebase('https://brilliant-heat-4810.firebaseio.com/productos');
-  //           var data = [];
-  //           myDataRef.limitToLast(4).on("child_added", function(snapshot) {
-  //               data.push(snapshot.val());
-  //           });
-  //           return deferred.promise;
-  //
-  //       }
-  // };
 
-  //return service;
-
-  this.getProducts = function(){
-    var myDataRef = new Firebase('https://brilliant-heat-4810.firebaseio.com/productos');
-    var data = [];
-    myDataRef.limitToLast(4).on("child_added", function(snapshot) {
-        data.push(snapshot.val());
+  this.getProduct = function(codigoProducto){
+    var myDataRef = new Firebase('https://appreciar.firebaseio.com/Productos');
+    var produ;
+    myDataRef.child(codigoProducto).once('value', function(){
+      produ = snapshot.val();
     });
-    return data;
+    //myDataRef.on("child_added", function(snapshot) {
+      //  data = snapshot.val();
+    //});
+    return produ;
   }
 
 
