@@ -3,8 +3,8 @@
 	<!-- Listado de productos -->
   <h4 align="center" >{{ tipoListado }}</h4>
 	<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
-		<div flex="auto" ng-repeat="p in datosBase">
-			<post-card post=p></post-card>
+		<div flex="auto" ng-repeat="post in datosBase">
+			<product-card posts=post prod=producto></product-card>
 		</div>
 	</md-content>
 </section>

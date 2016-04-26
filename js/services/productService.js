@@ -1,16 +1,30 @@
-app.service('productService', ['$q', function($q){
+app.service('productService', ['$firebaseArray','$firebaseObject', function($firebaseArray,$firebaseObject){
+//app.service('productService', ['$q', function($q){
 
-  this.getProduct = function(codigoProducto){
-    var myDataRef = new Firebase('https://appreciar.firebaseio.com/Productos');
-    var produ;
-    myDataRef.child(codigoProducto).once('value', function(){
-      produ = snapshot.val();
-    });
-    //myDataRef.on("child_added", function(snapshot) {
-      //  data = snapshot.val();
-    //});
-    return produ;
-  }
+  this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');
+  
+
+  this.getAll = function(accion) {
+    this.accionRef = this.myDataRef.child(accion);
+    var query = this.accionRef.orderByKey().limitToLast(10);
+    var datos = [];
+
+    datos = $firebaseArray(query);
+
+    return datos;
+  };
+
+  this.getProducts = function(idProd){
+
+   if (idProd == null || idProd == '' || idProd == undefined)
+    {
+      this.prodRef = this.myDataRef.child('Productos');
+    }else{
+      this.prodRef = this.myDataRef.child('Productos').child(idProd.toString());
+    }
+    
+    return $firebaseArray(this.prodRef);
+  };
 
 
 }]);

@@ -1,11 +1,18 @@
-app.controller('FinderController', ['$scope', function ($q, $log){
+app.controller('FinderController', ['$scope','productService', function ($scope, productService, $log){
     //'use strict';//tenia esto no se bien para que, investigue que es pero no lo entendi del todo menos
     //teniendo en cuenta que funciona igual si lo saco...
 
     //aca como que hace una variable de si mismo...
     //supongo que usando directamente el scope que recibo arriba (obvio para todo)
     //deberia funcionar, pero no probé...
-    var $scope = this;
+    //var $scope = this;
+
+    $scope.loadProductos = function() {
+      console.log("Entra al loadProductos!");
+      $scope.productosDesplegable = productService.getProducts();
+
+      console.log($scope.productosDesplegable);
+    }
 
     //coleccion estática sobre la que voy a buscar por ahora...
     $scope.productosBuscar = [
@@ -50,6 +57,8 @@ app.controller('FinderController', ['$scope', function ($q, $log){
       desc: 'The titles'
     }
     ];
+
+
 
     //este parametro activa y desactiva el autocomplete.
     $scope.isDisabled    = false;
