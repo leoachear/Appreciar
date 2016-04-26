@@ -8,10 +8,7 @@ app.controller('FinderController', ['$scope','productService', function ($scope,
     //var $scope = this;
 
     $scope.loadProductos = function() {
-      console.log("Entra al loadProductos!");
       $scope.productosDesplegable = productService.getProducts();
-
-      console.log($scope.productosDesplegable);
     }
 
     //coleccion estática sobre la que voy a buscar por ahora...
