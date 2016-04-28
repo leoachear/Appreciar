@@ -1,21 +1,19 @@
 app.service('productService', ['$firebaseArray','$firebaseObject', function($firebaseArray,$firebaseObject){
 //app.service('productService', ['$q', function($q){
 
-  this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');
-  
+  this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');  
 
   this.getAll = function(accion) {
     this.accionRef = this.myDataRef.child(accion);
     var query = this.accionRef.orderByKey().limitToLast(10);
-    var datos = [];
+    this.datos = [];
 
-    datos = $firebaseArray(query);
+    this.datos = $firebaseArray(query);
 
-    return datos;
+    return this.datos;
   };
 
   this.getProducts = function(idProd){
-
    if (idProd == null || idProd == '' || idProd == undefined)
     {
       this.prodRef = this.myDataRef.child('Productos');
@@ -24,6 +22,11 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
     }
     
     return $firebaseArray(this.prodRef);
+  };
+
+  this.agregarPost = function(post) {
+    console.log('Entra al agregarPost');
+    this.datos.$add(post);
   };
 
 

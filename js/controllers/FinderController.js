@@ -7,9 +7,26 @@ app.controller('FinderController', ['$scope','productService', function ($scope,
     //deberia funcionar, pero no probé...
     //var $scope = this;
 
+    var blanquear = function() {
+      //console.log('Entra en la funcion blanquear');
+      $scope.producto_precio = "";
+      $scope.producto_seleccionado = "";
+    };
+
     $scope.loadProductos = function() {
       $scope.productosDesplegable = productService.getProducts();
-    }
+    };
+
+    $scope.postear = function(producto_id, producto_precio){
+      console.log('entra en la funcion postear');
+
+      productService.agregarPost({
+        codProd: producto_id,
+        precio: producto_precio
+      });
+
+      blanquear();
+    };
 
     //coleccion estática sobre la que voy a buscar por ahora...
     $scope.productosBuscar = [
