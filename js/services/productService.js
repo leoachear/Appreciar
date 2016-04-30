@@ -5,7 +5,7 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
 
   this.getAll = function(accion) {
     this.accionRef = this.myDataRef.child(accion);
-    var query = this.accionRef.orderByKey().limitToLast(10);
+    var query = this.accionRef.orderByKey().limitToLast(8);
     this.datos = [];
 
     this.datos = $firebaseArray(query);
@@ -20,13 +20,18 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
     }else{
       this.prodRef = this.myDataRef.child('Productos').child(idProd.toString());
     }
+
+    this.productos = $firebaseArray(this.prodRef);
     
-    return $firebaseArray(this.prodRef);
+    return this.productos;
   };
 
   this.agregarPost = function(post) {
-    console.log('Entra al agregarPost');
     this.datos.$add(post);
+
+    var postsProdRef = this.prodRef.child(post.codProd).child('posts');
+    var postsProd = $firebaseArray(postsProdRef);
+    postsProd.$add(post);
   };
 
 
