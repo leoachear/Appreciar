@@ -14,6 +14,10 @@ app.config(function($routeProvider) {
 			controller: 'FiltroZonaController',
 			templateUrl: 'views/homePorZona.html'
 		})
+		.when('/homePorProductos',{
+			controller: 'FiltroProductoController',
+			templateUrl: 'views/homePorProductos.html'
+		})
 		// .when('/homeUltimas',{
 		// 	controller: 'FiltroHomeController',
 		// 	templateUrl: 'views/home2.html'
