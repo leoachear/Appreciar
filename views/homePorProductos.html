@@ -1,0 +1,17 @@
+<section>
+	<div layout="column" layout-align="center center">
+		<md-select placeholder="Seleccione el Producto" ng-model="producto_seleccionado" md-on-open="loadProductos()" style="min-width: 200px;">
+			<md-option ng-value="producto" ng-repeat="producto in productosDesplegable">{{producto.nombre}}</md-option>
+	    </md-select>
+	</div>
+	<!--
+	<section id="listado-principal">
+	  <h4 align="center" >{{ tipoListado }}</h4>
+		<md-content class="md-padding layout-row" layout-xs="column" layout-wrap>
+			<div flex="auto" ng-repeat="post in datosBase">
+				<product-card posts=post prod=producto></product-card>
+			</div>
+		</md-content>
+	</section>
+	-->
+</section>

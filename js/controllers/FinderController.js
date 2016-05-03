@@ -19,7 +19,9 @@ app.controller('FinderController', ['$scope','productService', function ($scope,
     $scope.postear = function(producto_id, producto_precio){
       productService.agregarPost({
         codProd: producto_id,
-        precio: producto_precio
+        precio: producto_precio,
+        positivos: 0,
+        negativos: 0
       });
 
       blanquear();
