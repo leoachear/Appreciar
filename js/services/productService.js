@@ -34,5 +34,26 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
     postsProd.$add(post);
   };
 
+  this.positivo = function(postId) {
+    var postIdRef = this.myDataRef.child('Posts').child(postId);
+    var positivoRef = postIdRef.child('positivos');
 
+    positivoRef.once("value", function(data) {
+      var suma = data.val();
+      suma += 1;
+      postIdRef.update({positivos:suma});
+    });
+  };
+
+
+  this.negativo = function(postId) {
+    var postIdRef = this.myDataRef.child('Posts').child(postId);
+    var negativoRef = postIdRef.child('negativos');
+
+    negativoRef.once("value", function(data) {
+      var suma = data.val();
+      suma += 1;
+      postIdRef.update({negativos:suma});
+    });
+  };
 }]);

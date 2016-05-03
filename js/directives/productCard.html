@@ -11,6 +11,15 @@
       </p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="positivo()">
+        {{posts.positivos}}
+        <md-icon md-svg-icon="img/icons/satisfied_black_24.svg"></md-icon>        
+      </md-button>
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="negativo()">
+        {{posts.negativos}}
+        <md-icon md-svg-icon="img/icons/dissatisfied_black_24.svg"></md-icon>        
+      </md-button>
+      <!--
       <md-button class="md-icon-button" aria-label="Favorite">
         <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
       </md-button>
@@ -20,5 +29,6 @@
       <md-button class="md-icon-button" aria-label="Share">
         <md-icon md-svg-icon="img/icons/share-arrow.svg"></md-icon>
       </md-button>
+      -->
     </md-card-actions>
 </md-card>
