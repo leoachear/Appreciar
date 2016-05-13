@@ -1,4 +1,4 @@
-var app = angular.module('Appreciar', ['ngMaterial','ngRoute','firebase']);
+var app = angular.module('Appreciar', ['ngMaterial','ngRoute','firebase','ngMessages','ngMaterial']);
 
 app.config(function($routeProvider) {
 	$routeProvider
