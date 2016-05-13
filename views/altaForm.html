@@ -4,6 +4,7 @@
 
     <!-- AUTOCOMPLETE -->
     <md-content class="md-padding" style="height:500px;">
+      <!--
       <form ng-submit="$event.preventDefault()">
         <md-autocomplete
         ng-disabled="isDisabled"
@@ -25,36 +26,77 @@
           </md-not-found>
         </md-autocomplete>
       </form>
+      -->
 
-      <div layout="column" layout-align="center center">
-          <md-select placeholder="Seleccione el Producto" ng-model="producto_seleccionado" md-on-open="loadProductos()" style="min-width: 200px;">
-            <md-option ng-value="producto" ng-repeat="producto in productosDesplegable">{{producto.nombre}}</md-option>
-          </md-select>
-          <md-input-container>
-            <label>Precio</label>
-            <input ng-model="producto_precio">
+      <md-content layout-padding>
+        <md-select placeholder="Seleccione el Producto" ng-model="producto_seleccionado" md-on-open="loadProductos()" style="min-width: 200px;">
+          <md-option ng-value="producto" ng-repeat="producto in productosDesplegable">{{producto.nombre}}</md-option>
+        </md-select>
+        <md-input-container>
+          <label>Precio</label>
+          <input ng-model="producto_precio">
+        </md-input-container>
+
+        <md-input-container class="md-block">
+            <label>Dirección</label>
+            <input ng-model="view.addressInput" ng-model-options="{debounce: 1000}" ng-change="buscarDireccion()" />
+        </md-input-container>
+        <div layout="row">
+          <md-input-container flex="99">
+            <label>Ubicaciones disponibles</label>
+            <md-select ng-model="view.selectedPlace" ng-disabled="view.places.length < 2" ng-change="centrarUbicacion()">
+              <md-option ng-repeat="place in view.places" value="{{place.place_id}}">{{place.formatted_address}}</md-option>
+            </md-select>
           </md-input-container>
-          <md-button ng-click="postear(producto_seleccionado.$id,producto_precio)" class="md-raised md-primary">Postear</md-button>
+          <md-button class="md-icon-button" ng-click="borrarMarcadores()" ng-disabled="view.markers.length === 0">
+            <md-icon md-svg-icon="white_delete" aria-label="Borrar"></md-icon>
+            <md-tooltip md-delay="1500" md-autohide="true">Borrar</md-tooltip>
+          </md-button>
+        </div>
+      </md-content>
+
+          <div id="map" class="altura-mapa"></div>
+
+          <md-button ng-click="postear()" class="md-raised md-primary">Postear</md-button>
           <!--
           <p class="md-caption">Seleccionaste el producto: {{ producto_seleccionado ? producto_seleccionado : 'Ninguna' }}</p>
           <p>Id de producto:  {{producto_seleccionado}}</p>
-          -->
-      </div>
+          
+      </div>-->
 
+
+<!--
       <button onclick="location.href='#/mapaForm.html'" id="seguir" style="margin-top:1em;" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
         <i class="material-icons">keyboard_arrow_right
         </i>
       </button>
       <div class="mdl-tooltip mdl-tooltip--large" for="seguir">Continuar</div>
     </md-content>
+    -->
 
 
-    <!-- Productos que se van filtrando?...... -->
+  <!--
+
+    <!-- Productos que se van filtrando?...... ->
     <md-content class="md-padding layout-row" layout-xs="column" layout-wrap ng-cloak>
       <div flex="auto">
         <!-- ng-repeat="prod in productosBuscar"  -->
-        <!-- <product-card producto=seleccionado</product-card> -->
+        <!-- <product-card producto=seleccionado</product-card> ->
       </div>
     </md-content>
+    -->
 
 </section>
+
+<script type="text/ng-template" id="icons_24x24.svg">
+  <svg 
+       width="24"
+       height="24" 
+       viewBox="0 0 24 24" 
+       xmlns="http://www.w3.org/2000/svg">
+      <g id="white_delete">
+          <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z" />
+          <path d="M0 0h24v24H0z" fill="none" />
+      </g>
+  </svg>
+</script>
