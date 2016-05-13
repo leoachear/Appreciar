@@ -1,4 +1,4 @@
-app.controller('FinderController', ['$scope','$mdToast','productService', function ($scope,$mdToast, productService, $log){
+app.controller('FinderController', ['$scope','productService', function ($scope, productService, $log){
     //'use strict';//tenia esto no se bien para que, investigue que es pero no lo entendi del todo menos
     //teniendo en cuenta que funciona igual si lo saco...
 
@@ -7,173 +7,21 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
     //deberia funcionar, pero no probé...
     //var $scope = this;
 
-    function iconConfiguration($mdIconProvider) {
-        $mdIconProvider.defaultIconSet('icons_24x24.svg', 24);
-    };
-
-    app.config(iconConfiguration);
-
-    var mapa;
-    var geocoder;
-
-    $scope.view = {
-        addressInput: '',
-        places: [],
-        selectedPlace: '',
-        markers: [],
-    };
-
-    $scope.buscarDireccion = buscarDireccion;
-    $scope.centrarUbicacion = centrarUbicacion;
-    $scope.borrarMarcadores = borrarMarcadores; 
-
-    InitializeComponents();
-
-    //Inicializa el mapa y otros componentes
-    function InitializeComponents() {
-        var mapConfig = {
-            center: { lat: -34.5711339, lng: -58.4786171 },
-            zoom: 14,
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        mapa = new google.maps.Map(document.getElementById('map'), mapConfig);
-        geocoder = new google.maps.Geocoder();
-    };
-
-    //Busca diferentes ubicaciones segun la direccion dada
-    function buscarDireccion() {   
-      if (geocoder !== undefined) {
-          geocoder.geocode(
-              { address: $scope.view.addressInput },
-              function (results, status) {
-                  $scope.view.places = [];
-                  $scope.view.selectedPlace = '';
-                  switch (status) {
-                      case google.maps.GeocoderStatus.OK:
-                          //console.log('Results: ' + results);
-                          $scope.view.places = results;
-                          if (results.length < 2) {
-                              $scope.view.selectedPlace = results[0].place_id;
-                              $scope.view.addressInput = results[0].formatted_address;
-                              //console.log('results: ');
-                              //console.log(results);
-                              $scope.view.addressObj = results[0];
-                              //console.log('addressObj: ');
-                              //console.log($scope.view.addressObj);
-                              centrarUbicacion();
-                          } else {
-                              //console.log();
-                              mostrarMensaje('Se han encontrado ' + $scope.view.places.length + ' ubicaciones');
-                              break;
-                            }
-                      case google.maps.GeocoderStatus.ZERO_RESULTS:
-                          mostrarMensaje('No se han encontrado resultados');
-                          break;
-                      case google.maps.GeocoderStatus.REQUEST_DENIED:
-                          mostrarMensaje('La solicitud de búsqueda ha sido denegada');
-                          break;
-                      case google.maps.GeocoderStatus.INVALID_REQUEST:
-                          mostrarMensaje('Solicitud inválida');
-                          break;
-                  }
-                  $scope.$apply();
-              }
-          );
-      }
-    };
-
-    //Posiciona en el centro de la vista del mapa la ubicacion seleccionada
-    function centrarUbicacion() {
-      var selected = _.find($scope.view.places, function (x) { return x.place_id === $scope.view.selectedPlace; });
-      if ($scope.view.selectedPlace !== undefined & $scope.view.selectedPlace !== '') {
-          var location = _.result(selected, 'geometry.location');
-            //console.log('selectedPlace: ' + $scope.view.selectedPlace);
-            //console.log('addressInput: ' + $scope.view.addressInput);
-            //console.log('Location: ');
-            //console.log(location);
-          if (location !== undefined) {
-              var marker = new google.maps.Marker({ position: location, map: mapa });
-              $scope.view.markers.push(marker);
-              $scope.view.addressObj = selected;
-              mapa.setCenter(location);
-              
-              //console.log('Pruebaaaaa:');
-              //console.log(selected);
-              //console.log('location: ' + location);
-              //console.log('$scope.view.selectedPlace: ' + $scope.view.selectedPlace);
-              //console.log('$scope.view.addressInput: ' + $scope.view.addressInput);
-          }
-          else {
-              mostrarMensaje('No se pudo mostrar la ubicación');
-          }
-      }
-    };
-
-    //Borra los marcadores del mapa
-    function borrarMarcadores() {
-      for (var i = 0; i < $scope.view.markers.length; i++) {
-          $scope.view.markers[i].setMap(null);
-      }
-      $scope.view.markers = [];
-    };
-
-    //Muestra un mensaje toast (funcion base)
-    function simpleToastBase(message, position, delay, action) {
-        $mdToast.show(
-            $mdToast.simple()
-                .content(message)
-                .position(position)
-                .hideDelay(delay)
-                .action(action)
-        );
-    }
-
-    //Muestra un mensaje toast
-    function mostrarMensaje(mensaje) {
-        simpleToastBase(mensaje, 'top right', 6000, 'X');
-    }
-
     var blanquear = function() {
       $scope.producto_precio = "";
       $scope.producto_seleccionado = "";
-      $scope.view.addressInput = "";
-      $scope.view.selectedPlace = "";
     };
 
     $scope.loadProductos = function() {
       $scope.productosDesplegable = productService.getProducts();
     };
 
-    $scope.postear = function(){
-      var producto_id = $scope.producto_seleccionado.$id;
-      var producto_precio = $scope.producto_precio;
-      var mapaObj = $scope.view.addressObj;
-      var lat = mapaObj.geometry.viewport.H.H;
-      var lng = mapaObj.geometry.viewport.j.j;
-      var formatted_address = mapaObj.formatted_address;
-      var place_id = mapaObj.place_id;
-      
-      //console.log('Aca esta para postear!!!');
-      //console.log($scope.view.addressObj);
-      //console.log('formatted_address:');
-      //console.log($scope.view.addressObj.formatted_address);
-      //console.log('address_components:');
-      //console.log($scope.view.addressObj.address_components);
-      //console.log('lat y log: ');
-      //console.log($scope.view.addressObj.geometry.viewport.H.H);
-      //console.log($scope.view.addressObj.geometry.viewport.j.j);
-      //console.log('place_id:');
-      //console.log($scope.view.addressObj.place_id);
-      //console.log('producto_id: ' + producto_id);
-      //console.log('producto_precio' + producto_precio);
+    $scope.postear = function(producto_id, producto_precio){
       productService.agregarPost({
         codProd: producto_id,
         precio: producto_precio,
         positivos: 0,
-        negativos: 0,
-        ubicacion: {lat: lat, lng: lng},
-        formatted_address: formatted_address,
-        place_id: place_id
+        negativos: 0
       });
 
       blanquear();
