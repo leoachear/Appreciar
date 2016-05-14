@@ -6,9 +6,17 @@ app.config(function($routeProvider) {
 			controller: 'MainController',
 			templateUrl: 'views/home.html'
 		})
+		.when('/login',{
+			controller: 'LoginController',
+			templateUrl: 'views/login.html'
+		})
+		.when('/registro',{
+			controller: 'LoginController',
+			templateUrl: 'views/registro.html'
+		})
 		.when('/altaForm',{
-			controller: 'FinderController',
-			templateUrl: 'views/altaForm.html'
+				controller: 'FinderController',
+				templateUrl: 'views/altaForm.html'
 		})
 		.when('/homePorZona',{
 			controller: 'FiltroZonaController',

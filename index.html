@@ -55,29 +55,32 @@
 	        <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
 	        </md-button>
-          <span><h3><a href="#/altaForm">Postear</a></h3></span>
-          <md-button class="md-icon-button" aria-label="More">
+          <!-- <span><h3><a href="#/altaForm">Postear</a></h3></span> -->
+          <md-button aria-label="altaForm" ng-click="cambiarVista('altaForm')">
+            Postear
+          </md-button>
+          <md-button class="md-icon-button" aria-label="More" ng-click="cambiarVista('login')">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
 	      </div>
 	    </md-toolbar>
 	</header>
   <!-- Busqueda y opciones rapidas. -->
-  <section style="padding: 0.5em 0 0.5em 0;" align="center">
+  <!-- <section style="padding: 0.5em 0 0.5em 0;" align="center"> -->
     <!-- ACÁ QUEDÓ LA BÚSQUEDA AHORA -->
-    <md-input-container style="background-color:white; margin-left:2em;">
+    <!-- <md-input-container style="background-color:white; margin-left:2em;">
     <label>Búsqueda</label>
     <input style="width:20em; " ng-model="user.address">
-    </md-input-container>
+    </md-input-container> -->
     <!-- HASTA ACÁ -->
-    <md-radio-group ng-model="data.group1" flex layout='row'>
+    <!-- <md-radio-group ng-model="data.group1" flex layout='row'>
       <span flex></span>
       <md-radio-button value="Mapa">Mapa</md-radio-button>
       <md-radio-button value="Lista">Lista</md-radio-button>
       <md-radio-button value="Visual">Visual</md-radio-button>
       <span flex></span>
     </md-radio-group>
-  </section>
+  </section> -->
 
   <!-- VISTASS -->
   <div ng-view></div>
@@ -118,13 +121,14 @@
   <script src="js/controllers/FinderController.js"></script>
   <script src="js/controllers/MapsController.js"></script>
   <script src="js/controllers/FiltroZonaController.js"></script>
-  <!-- <script src="js/controllers/FiltroHomeController.js"></script> -->
+  <script src="js/controllers/LoginController.js"></script>
 
   <!-- Directives -->
   <script src="js/directives/productCard.js"></script>
 
   <!-- Services -->
   <script src="js/services/productService.js"></script>
+  <script src="js/services/loginService.js"></script>
 
   <script src='https://maps.googleapis.com/maps/api/js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js'></script>
