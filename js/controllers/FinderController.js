@@ -33,7 +33,12 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
     function InitializeComponents() {
         var mapConfig = {
             center: { lat: -34.5711339, lng: -58.4786171 },
-            zoom: 14,
+            zoom: 16,
+            scrollwheel: false,
+            disableDefaultUI: true,
+            disableDoubleClickZoom: true,
+            draggable: false,
+            keyboardShortcuts: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         mapa = new google.maps.Map(document.getElementById('map'), mapConfig);
@@ -44,7 +49,13 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
     function buscarDireccion() {   
       if (geocoder !== undefined) {
           geocoder.geocode(
-              { address: $scope.view.addressInput },
+              { address: $scope.view.addressInput,
+                componentRestrictions: 
+                {
+                    country: 'AR',
+                    locality: 'CABA'
+                }
+              },
               function (results, status) {
                   $scope.view.places = [];
                   $scope.view.selectedPlace = '';
