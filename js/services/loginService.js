@@ -26,18 +26,19 @@ app.service('loginService', ['$q', function($q){
 	};
 
   /*A partir de la misma idea que para loguearse, armo el método de registración...*/
-  // this.registro = function(usuario){
-  //     //var defered = $q.defer();
-  //     ref.createUser(usuario, function(error, userData) {
-  //     if (error) {
-  //       console.log("Error creating user:", error);
-  //       //defered.reject(error);
-  //     } else {
-  //       console.log("Successfully created user account with uid:", userData.uid);
-  //       //defered.resolve(userData);
-  //     }
-  //   });
-  // };
+  this.registro = function(usuario){
+      var defered = $q.defer();
+      ref.createUser(usuario, function(error, userData) {
+      if (error) {
+        //console.log("Error creating user:", error);
+        defered.reject(error);
+      } else {
+        //console.log("Successfully created user account with uid:", userData.uid);
+        defered.resolve(userData);
+      }
+    });
+    return defered.promise;
+  };
 
 
   // this.registro2 = function(usuario){

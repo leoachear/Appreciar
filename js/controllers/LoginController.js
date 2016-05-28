@@ -1,11 +1,10 @@
-app.controller('LoginController', ['$scope', '$location', '$rootScope','loginService',
-  function($scope, $location, $rootScope, loginService){
+app.controller('LoginController', ['$scope', '$location', '$rootScope','loginService','$mdDialog',
+  function($scope, $location, $rootScope, loginService, $mdDialog){
 
   $scope.usuario = {email: "", password: ""};
   $scope.email2 = "";
-
-
-
+  $scope.errorGeneral = "";
+  $scope.mostrarOcultar = true;
 
   /* la autenticacion es asincronica entendi por ahi, y me di cuenta de que tarda.
   hay dos maneras para hacer muchas cosas en firebase, callbacks y promises.
@@ -15,6 +14,7 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
   $scope.loguearse = function() {
     loginService.login($scope.usuario).then(function(authData){
       $rootScope.LOGUEADO = authData;
+      sessionStorage.setItem('datosAuth', authData);
       $scope.cambiarVista('altaForm');
 
     }, function(error){
@@ -26,20 +26,45 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
 
   /*Acá trato de usar lo mismo que arriba, recibir LA PROMESA...... pero devuelve otro
   objeto, en vez de authData, userData; así que no sé... */
-  // $scope.registrarse = function(){
-  //   if($scope.usuario.email == $scope.email2){
-  //     loginService.registro2($scope.usuario).then(function(userData){
-  //       alert("registrado...!");
-  //       console.log(userData);
-  //     });
-  //     .then(function(error){
-  //       alert("algo falló");
-  //       console.log(error);
-  //     });
-  //   }
-  // };
+  $scope.registrarse = function(){
+    //oculto el error general.
+    $scope.errorGeneral = "";
+    $scope.mostrarOcultar = true;
 
+    if($scope.usuario.email == $scope.email2){
+      loginService.registro($scope.usuario).then(function(userData){
+        // alert("registrado...!");
+        console.log(userData + " registrado...");
+        $scope.mostrarOcultar = true;
+        //$scope.cambiarVista('login');ç
+        $scope.loguearse();
+      },function(error){
+        switch (error.code) {
+          case "EMAIL_TAKEN":
+            console.log("El mail ya se encuentra registrado...");
+            $scope.errorGeneral = "El mail ya se encuentra registrado...";
+            $scope.mostrarOcultar = false;
+            $scope.showAlert();
+            break;
+          case "INVALID_EMAIL":
+            console.log("El mail ingresado no es válido");
+            $scope.errorGeneral = "El mail ingresado no es válido";
+            $scope.mostrarOcultar = false;
+            break;
+          default:
+            console.log("Error creating user:", error);
+            $scope.errorGeneral = "ups, hubo un error al crear tu usuario.";
+            $scope.mostrarOcultar = false;
+        }
+      });
+    }
+    else{
+        $scope.errorGeneral = "Los mails deben ser iguales.";
+        $scope.mostrarOcultar = false;
+        console.log("Los mails deben ser iguales...");
+    }
 
+  };
 
   $scope.cambiarVista = function(view){
     /*la idea es que si hay algo en el objeto LOGUEADO te redirecciona a donde
@@ -66,5 +91,18 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
   // $scope.loguearse = function(){
   //   $scope.auth.$authWithOAuthPopup('google');
   // }
+
+  $scope.showAlert = function(ev) {
+    $mdDialog.show(
+      $mdDialog.alert()
+        .parent(angular.element(document.querySelector('#popupContainer')))
+        .clickOutsideToClose(true)
+        .title('This is an alert title')
+        .textContent('You can specify some description text in here.')
+        .ariaLabel('Alert Dialog Demo')
+        .ok('Got it!')
+        .targetEvent(ev)
+    );
+  };
 
 }]);
