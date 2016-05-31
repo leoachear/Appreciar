@@ -9,3 +9,32 @@ a{
     height: calc(100% - 244px);
     margin: 0px 10px 0px 10px;
 }
+
+.imageLoginOptions{
+  width: 120px;
+  height: 120px;
+}
+.divLoginOptions{
+  margin: auto;
+  width: 60%;
+
+}
+
+@media only screen and (max-width: 544px) {
+  .divLoginOptions{
+    margin: auto;
+    width: 70%;
+
+  }
+  .imageLoginOptions{
+    width: 60px;
+    height: 60px;
+  }
+  #titlePage{
+    display: none;
+  }
+  #buttonIngresar{
+    display: none;
+  }
+
+}

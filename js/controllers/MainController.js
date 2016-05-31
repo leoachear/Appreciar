@@ -1,11 +1,13 @@
 app.controller('MainController', ['$scope', '$location','productService','$rootScope', function($scope, $location, productService, $rootScope){
 
+
 	//ESTO LO TENGO QUE CAMBIAR, porque cada vez que pasa por acá me blanquea el usuario, BOLUUUDOOOO KOKIIIIII
 	//$rootScope.LOGUEADO = "";
 	// $scope.usuario = "HOLA";
 	// $scope.contrasenia = "";
 	//lo pongo aca para que tenga un valor de entrada, luego se le cambia
 	//dependiendo de la opcion de menu seleccionada.
+
 	$scope.tipoListado = "Listado Home";
 
 	$scope.datosBase = productService.getAll('Posts');
@@ -39,8 +41,8 @@ app.controller('MainController', ['$scope', '$location','productService','$rootS
 		else {
 			$location.path(view);
 			console.log("HOLAAAA - no es undefined!! o no está queriendo postear...");
-			console.log($scope.LOGUEADO.auth);
-			console.log(new Date ($scope.LOGUEADO.expires * 1000));
+			// console.log($scope.LOGUEADO.auth);
+			// console.log(new Date ($scope.LOGUEADO.expires * 1000));
 		}
 
 	};
