@@ -50,13 +50,14 @@
             <label>Dirección</label>
             <input ng-model="view.addressInput" ng-model-options="{debounce: 3000}" ng-change="buscarDireccion()" />
         </md-input-container>
-        <div layout="row">
-          <md-input-container flex="99">
+        <div class="md-block">
+          <md-input-container class="md-block">
             <label>Ubicaciones disponibles</label>
             <md-select ng-model="view.selectedPlace" ng-disabled="view.places.length < 2" ng-change="centrarUbicacion()">
               <md-option ng-repeat="place in view.places" value="{{place.place_id}}">{{place.formatted_address}}</md-option>
             </md-select>
           </md-input-container>
+          <md-button ng-click="postear()" class="md-raised md-primary" ng-disabled="!(producto_seleccionado && producto_precio)">Postear</md-button>
           <md-button class="md-icon-button" ng-click="borrarMarcadores()" ng-disabled="view.markers.length === 0">
             <md-icon md-svg-icon="white_delete" aria-label="Borrar"></md-icon>
             <md-tooltip md-delay="1500" md-autohide="true">Borrar</md-tooltip>
@@ -67,7 +68,7 @@
 
           <div id="map" class="altura-mapa"></div>
 
-          <md-button ng-click="postear()" class="md-raised md-primary" ng-disabled="!(producto_seleccionado && producto_precio)">Postear</md-button>
+          
           <!--
           <p class="md-caption">Seleccionaste el producto: {{ producto_seleccionado ? producto_seleccionado : 'Ninguna' }}</p>
           <p>Id de producto:  {{producto_seleccionado}}</p>

@@ -1,4 +1,4 @@
-app.controller('FinderController', ['$scope','$mdToast','productService', function ($scope,$mdToast, productService, $log){
+app.controller('FinderController', ['$scope','$mdToast','productService','$location', function($scope,$mdToast, productService, $location,$log){
     //'use strict';//tenia esto no se bien para que, investigue que es pero no lo entendi del todo menos
     //teniendo en cuenta que funciona igual si lo saco...
 
@@ -71,7 +71,9 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
                               $scope.view.addressObj = results[0];
                               //console.log('addressObj: ');
                               //console.log($scope.view.addressObj);
+                              mostrarMensaje('Se encontró la ubicación');
                               centrarUbicacion();
+                              break;
                           } else {
                               //console.log();
                               mostrarMensaje('Se han encontrado ' + $scope.view.places.length + ' ubicaciones');
@@ -141,7 +143,7 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
 
     //Muestra un mensaje toast
     function mostrarMensaje(mensaje) {
-        simpleToastBase(mensaje, 'top right', 6000, 'X');
+        simpleToastBase(mensaje, 'top right left', 4000, 'X');
     }
 
     var blanquear = function() {
@@ -159,24 +161,26 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
       var producto_id = $scope.producto_seleccionado.$id;
       var producto_precio = $scope.producto_precio;
       var mapaObj = $scope.view.addressObj;
-      var lat = mapaObj.geometry.viewport.H.H;
-      var lng = mapaObj.geometry.viewport.j.j;
-      var formatted_address = mapaObj.formatted_address;
-      var place_id = mapaObj.place_id;
+      var lat;
+      var lng;
+      var formatted_address;
+      var place_id;
+
+      if(mapaObj === undefined){
+        console.log('Está vacío');
+        lat = 0;
+        lng = 0;
+        formatted_address = '';
+        place_id = '';
+      }
+      else{
+        console.log('Está lleno');
+        lat = mapaObj.geometry.viewport.H.H;
+        lng = mapaObj.geometry.viewport.j.j;
+        formatted_address = mapaObj.formatted_address;
+        place_id = mapaObj.place_id;
+      }
       
-      //console.log('Aca esta para postear!!!');
-      //console.log($scope.view.addressObj);
-      //console.log('formatted_address:');
-      //console.log($scope.view.addressObj.formatted_address);
-      //console.log('address_components:');
-      //console.log($scope.view.addressObj.address_components);
-      //console.log('lat y log: ');
-      //console.log($scope.view.addressObj.geometry.viewport.H.H);
-      //console.log($scope.view.addressObj.geometry.viewport.j.j);
-      //console.log('place_id:');
-      //console.log($scope.view.addressObj.place_id);
-      //console.log('producto_id: ' + producto_id);
-      //console.log('producto_precio' + producto_precio);
       productService.agregarPost({
         codProd: producto_id,
         precio: producto_precio,
@@ -185,9 +189,13 @@ app.controller('FinderController', ['$scope','$mdToast','productService', functi
         ubicacion: {lat: lat, lng: lng},
         formatted_address: formatted_address,
         place_id: place_id
-      });
+      }).then(function(){
+        mostrarMensaje('¡Tu Post fue agregado!');
 
-      blanquear();
+        blanquear();
+
+        $location.path('/');
+      });
     };
 
     //coleccion estática sobre la que voy a buscar por ahora...

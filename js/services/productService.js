@@ -1,4 +1,4 @@
-app.service('productService', ['$firebaseArray','$firebaseObject', function($firebaseArray,$firebaseObject){
+app.service('productService', ['$firebaseArray','$firebaseObject','$q', function($firebaseArray,$firebaseObject,$q){
 //app.service('productService', ['$q', function($q){
 
   this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');  
@@ -27,11 +27,17 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
   };
 
   this.agregarPost = function(post) {
-    this.datos.$add(post);
+    var defered = $q.defer();
+
+    this.datos.$add(post).then(function(ref){
+      defered.resolve();
+    });
 
     var postsProdRef = this.prodRef.child(post.codProd).child('posts');
     var postsProd = $firebaseArray(postsProdRef);
     postsProd.$add(post);
+
+    return defered.promise;
   };
 
   this.positivo = function(postId) {
