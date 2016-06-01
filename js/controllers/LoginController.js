@@ -12,6 +12,12 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
   tomando ese promise con el THEN y haciendo algo por el success, que seria lo logueado
   y por el error haria otra cosa....*/
   $scope.loguearse = function() {
+    $scope.mostrarOcultar = true;
+    if ($scope.usuario.email == "" || $scope.usuario.password ==""){
+      $scope.errorGeneral = "usuario y password son requeridos...";
+      $scope.mostrarOcultar = false;
+      return;
+    }
     loginService.login($scope.usuario).then(function(authData){
       $rootScope.LOGUEADO = authData;
       $scope.cambiarVista('altaForm');
@@ -19,6 +25,8 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
     }, function(error){
       console.log(error);
       $scope.message = error
+      $scope.errorGeneral = "usuario o password incorrectos";
+      $scope.mostrarOcultar = false;
     });
 
   };
