@@ -1,4 +1,5 @@
-app.controller('MainController', ['$scope', '$location','productService','$rootScope', function($scope, $location, productService, $rootScope){
+app.controller('MainController', ['$scope', '$location','productService','$rootScope',
+	function($scope, $location, productService, $rootScope){
 
 
 	//ESTO LO TENGO QUE CAMBIAR, porque cada vez que pasa por acá me blanquea el usuario, BOLUUUDOOOO KOKIIIIII
@@ -10,13 +11,16 @@ app.controller('MainController', ['$scope', '$location','productService','$rootS
 
 	$scope.tipoListado = "Listado Home";
 
-	$scope.datosBase = productService.getAll('Posts');
 
 	$scope.producto = productService.getProducts();
+	$scope.datosBase = productService.getAll('Posts');
 
-	$scope.datosProd = function(codProd) {
-		$scope.producto = productService.getProducts(codProd);
-	};
+
+
+	//20160601: NO se está usando?
+	// $scope.datosProd = function(codProd) {
+	// 	$scope.producto = productService.getProducts(codProd);
+	// };
 
 	$scope.menuOptions = [
 		{
