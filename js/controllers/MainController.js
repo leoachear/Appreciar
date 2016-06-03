@@ -1,5 +1,5 @@
-app.controller('MainController', ['$scope', '$location','productService','$rootScope',
-	function($scope, $location, productService, $rootScope){
+app.controller('MainController', ['$scope', '$location','productService','$rootScope','loginService',
+	function($scope, $location, productService, $rootScope, loginService){
 
 
 	//ESTO LO TENGO QUE CAMBIAR, porque cada vez que pasa por acá me blanquea el usuario, BOLUUUDOOOO KOKIIIIII
@@ -29,11 +29,13 @@ app.controller('MainController', ['$scope', '$location','productService','$rootS
 		},
 		{
 				nombre: "Por Zona",
-				opcion: "homePorZona"
+				opcion: "homeUltimas"
+				//opcion: "homePorZona"
 		},
 		{
 				nombre: "Por Productos",
-				opcion: "homePorProductos"
+				opcion: "homeUltimas"
+				//opcion: "homePorProductos"
 		}
 	];
 
@@ -49,6 +51,12 @@ app.controller('MainController', ['$scope', '$location','productService','$rootS
 			// console.log(new Date ($scope.LOGUEADO.expires * 1000));
 		}
 
+	};
+
+	$scope.desloguear = function(){
+		loginService.logout();
+		$rootScope.LOGUEADO = undefined;
+		console.log("se deslogueoooo");
 	};
 
 	// $scope.loguearse = function(){

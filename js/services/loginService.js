@@ -20,7 +20,7 @@ app.service('loginService', ['$q','$rootScope', function($q, $rootScope){
                 nombre: "",
                 foto: "url('img/icon-profile.png');",
                 ocultarBotonIngresar: true,
-                ocultarFotoUsuario: false
+                ocultarFotoUsuario: true
               };
     					console.log("Authenticated successfully with payload:", authData);
               defered.resolve(authData);
@@ -72,6 +72,16 @@ app.service('loginService', ['$q','$rootScope', function($q, $rootScope){
       }
     });
     return defered.promise;
+  };
+
+  this.logout = function(){
+    ref.unauth();
+    $rootScope.perfilLogueado = {
+      nombre: "",
+      foto: "",
+      ocultarBotonIngresar: false,
+      ocultarFotoUsuario: false
+    };
   };
 
   // this.registro2 = function(usuario){

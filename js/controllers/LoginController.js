@@ -107,7 +107,6 @@ app.controller('LoginController', ['$scope', '$location', '$rootScope','loginSer
     });
   };
 
-
   //todo esto para después, para hacerlo con angularFire
   // $scope.auten = loginService;
   //   $scope.auth.$onAuth(function(authData) {
