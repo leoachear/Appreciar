@@ -11,11 +11,12 @@
       </p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-icon-button" aria-label="Favorite" ng-click="positivo()">
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="positivo()" flex="auto">
         {{posts.positivos}}
         <md-icon md-svg-icon="img/icons/satisfied_black_24.svg"></md-icon>        
       </md-button>
-      <md-button class="md-icon-button" aria-label="Favorite" ng-click="negativo()">
+      <div flex></div>
+      <md-button class="md-icon-button" aria-label="Favorite" ng-click="negativo()" flex="auto">
         {{posts.negativos}}
         <md-icon md-svg-icon="img/icons/dissatisfied_black_24.svg"></md-icon>        
       </md-button>
