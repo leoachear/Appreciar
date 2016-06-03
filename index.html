@@ -10,7 +10,9 @@
 
   	<!-- Angular Material style sheet -->
   	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
-    <link rel="stylesheet" href="css/main.css">
+
+    <!-- mensajes de error de Angular Material -->
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-messages.js" charset="utf-8"></script> -->
 
     <!-- Material Design Lite -->
     <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
@@ -18,14 +20,30 @@
     <!-- Material Design icon font -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
+    <link rel="stylesheet" href="css/main.css">
+
 </head>
 
-<body ng-app="Appreciar" ng-controller="MainController">
+<body ng-app="Appreciar" ng-controller="MainController" ng-clock>
+
+  <style media="screen">
+    .usuario {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: #3f51b5;
+    }
+
+  </style>
 
 <!-- CABECERA Y MENU -->
 	<header>
 		<md-toolbar>
-	      <div class="md-toolbar-tools">
+	      <div class="md-toolbar-tools" style="padding:0;">
 	        <!--
           <md-button class="md-icon-button" aria-label="Settings">
 	          <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
@@ -49,19 +67,27 @@
           </md-menu>
 
 	        <h2>
-	          <span>Appreciar</span>
+	          <span id="titlePage">Appreciar</span>
 	        </h2>
           <span flex></span>
-	        <md-button class="md-icon-button" aria-label="Favorite">
+	        <!-- <md-button class="md-icon-button" aria-label="Favorite">
 	          <md-icon md-svg-icon="img/icons/favorite.svg"></md-icon>
-	        </md-button>
+	        </md-button> -->
           <!-- <span><h3><a href="#/altaForm">Postear</a></h3></span> -->
-          <md-button aria-label="altaForm" ng-click="cambiarVista('altaForm')">
+          <md-button aria-label="altaForm" class="md-raised" style="color:black;" ng-click="cambiarVista('altaForm')">
             Postear
           </md-button>
-          <md-button class="md-icon-button" aria-label="More" ng-click="cambiarVista('login')">
+          <label ng-hide="ocultarFotoUsuario">{{perfilLogueado.nombre}}</label>
+          <md-button id="buttonIngresar" aria-label="altaForm" ng-click="cambiarVista('login')" ng-hide="perfilLogueado.ocultarBotonIngresar">
+            Ingresar
+          </md-button>
+          <!-- div con la imagen del usuario -->
+          <div class="usuario" style="background-image: {{perfilLogueado.foto}}" ng-hide="!(perfilLogueado.ocultarFotoUsuario)">
+          </div>
+          <md-button class="md-icon-button" aria-label="More" ng-click="cambiarVista('login')" ng-hide="!(perfilLogueado.ocultarFotoUsuario)">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
 	        </md-button>
+          <!-- acá va la fotito y el nombre. -->
 	      </div>
 	    </md-toolbar>
 	</header>
@@ -87,9 +113,9 @@
 
   <!-- Banner cosas -->
   <section align="center" style="padding:1em 0 1em 0; background-color:black;">
-    <a href="http://www.google.com.ar" target="_blank">
-      <img src="img/products/bannerCoca.png" alt="CocaCola" style="width:100vw;"/>
-    </a>
+
+      <img src="img/bannerPrograma.jpeg" alt="Programá tu futuro" style="width:100vw;background-position: center; background-size: cover;"/>
+
   </section>
 
   <!-- FOOTER -->
@@ -131,10 +157,10 @@
   <script src="js/services/loginService.js"></script>
 
   <script src='https://maps.googleapis.com/maps/api/js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-animate.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-aria.min.js'></script>
-  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-messages.min.js'></script>
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular.min.js'></script> -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-animate.min.js'></script> -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-aria.min.js'></script> -->
+  <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.6/angular-messages.min.js'></script> -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.11.0/angular-material.min.js'></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.10.1/lodash.min.js'></script>
 

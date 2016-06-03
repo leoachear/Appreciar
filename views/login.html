@@ -1,21 +1,11 @@
-<section class="login" style="width:25%; margin-left:30%; padding-bottom:5em;">
+<section class="login" style="margin-left:5%; margin-right:5%; padding-bottom:5em;">
 
-  <h3>Logueate</h3>
-  <form style="margin-bottom:1em;">
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Email</label>
-      <input ng-model="usuario.email">
-    </md-input-container>
+  <h3>Cómo ingresas?</h3>
+  <div class="divLoginOptions">
+    <img class="imageLoginOptions" src="img/icons/mailLogin.png" alt="Login Mail" ng-click="cambiarVista('loginMail')"/>
+    <img class="imageLoginOptions" src="img/icons/facebook.png" alt="Login Mail" ng-click="loginRedSocial('facebook')"/>
+    <img class="imageLoginOptions" src="img/icons/twitter.png" alt="Login Mail" ng-click="loginRedSocial('twitter')"/>
+  </div>
 
-    <md-input-container class="md-block" flex-gt-sm>
-      <label>Password</label>
-      <input ng-model="usuario.password">
-    </md-input-container>
-
-    <md-button style="padding:0; margin:0;" class="md-raised md-primary" ng-click="loguearse()">Ingresar</md-button>
-
-  </form>
-  <a href="" ng-click="cambiarVista('registro')">Registrarse</a> <span>||</span>
-  <a href="#" style=" display:inline-block;">Olvidé mi clave</a>
 
 </section>

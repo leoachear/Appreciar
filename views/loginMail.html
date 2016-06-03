@@ -1,0 +1,32 @@
+<section class="login" style="margin-left:5%; margin-right:5%; padding-bottom:5em;">
+
+  <h3>Ingresar</h3>
+  <form style="margin-bottom:1em;" name="formLogin">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Email</label>
+      <input ng-model="usuario.email" name="mail" maxlength="50" type="email">
+      <div ng-messages="formLogin.mail.$error">
+        <div ng-message="required">Campo necesario...</div>
+        <div ng-message="email">Parece que el mail no es correcto...</div>
+      </div>
+    </md-input-container>
+
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Password</label>
+      <input ng-model="usuario.password" type="password" name="password">
+      <div ng-messages="formLogin.password.$error">
+        <div ng-message="required">Campo necesario...</div>
+      </div>
+    </md-input-container>
+
+    <md-button style="padding:0; margin:0;" class="md-raised md-primary" ng-click="loguearse()" ng-disabled="formLogin.$invalid">Ingresar</md-button>
+
+  </form>
+  <a href="" ng-click="cambiarVista('registro')">Registrarse</a>
+  <p ng-hide="mostrarOcultar">
+    {{errorGeneral}}
+  </p>
+  <!-- <span>||</span> -->
+  <!-- <a href="#" style=" display:inline-block;">Olvidé mi clave</a> -->
+
+</section>

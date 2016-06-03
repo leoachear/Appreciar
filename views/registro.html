@@ -1,20 +1,38 @@
-<h3>Registarse</h3>
-<form style="margin-bottom:1em;">
-  <md-input-container class="md-block" flex-gt-sm>
-    <label>Email</label>
-    <input ng-model="usuario.email">
-  </md-input-container>
+<section style="margin-left:5%; margin-right:5%; padding-bottom:5em;">
+  <h3>Registrarse</h3>
+  <form name="formRegistro" style="margin-bottom:1em;">
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Email</label>
+      <input required md-no-asterisk ng-model="usuario.email" name="mail" maxlength="50" type="email">
+      <div ng-messages="formRegistro.mail.$error">
+        <div ng-message="required">Campo necesario...</div>
+        <div ng-message="email">Parece que el mail no es correcto...</div>
+      </div>
+    </md-input-container>
 
-  <md-input-container class="md-block" flex-gt-sm>
-    <label>Confirma email</label>
-    <input ng-model="email2">
-  </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Confirma email</label>
+      <input ng-model="email2" required md-no-asterisk name="mail2" maxlength="50" type="email">
+      <div ng-messages="formRegistro.mail2.$error">
+        <div ng-message="required">Campo necesario...</div>
+        <div ng-message="email">Parece que el mail no es correcto...</div>
+      </div>
+    </md-input-container>
 
-  <md-input-container class="md-block" flex-gt-sm>
-    <label>Password</label>
-    <input ng-model="usuario.password">
-  </md-input-container>
+    <md-input-container class="md-block" flex-gt-sm>
+      <label>Password</label>
+      <input ng-model="usuario.password" type="password" required md-no-asterisk name="password" minlength="4">
+      <div ng-messages="formRegistro.password.$error">
+        <div ng-message="required">Campo necesario...</div>
+        <div ng-message="minlength">La contraseña debería tener al menos 4 caracteres...</div>
+      </div>
+    </md-input-container>
 
-  <md-button style="padding:0; margin:0;" class="md-raised md-primary" ng-click="registrarse()">Aceptar</md-button>
+    <md-button style="padding:0; margin:0;" class="md-raised md-primary" ng-click="registrarse()" ng-disabled="formRegistro.$invalid">Aceptar</md-button>
+    <p ng-hide="mostrarOcultar">
+      {{errorGeneral}}
+    </p>
 
-</form>
+  </form>
+
+</section>

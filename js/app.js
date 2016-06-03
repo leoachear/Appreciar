@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
 			controller: 'LoginController',
 			templateUrl: 'views/login.html'
 		})
+		.when('/loginMail',{
+			controller: 'LoginController',
+			templateUrl: 'views/loginMail.html'
+		})
 		.when('/registro',{
 			controller: 'LoginController',
 			templateUrl: 'views/registro.html'

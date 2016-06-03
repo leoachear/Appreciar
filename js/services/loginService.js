@@ -1,4 +1,4 @@
-app.service('loginService', ['$q', function($q){
+app.service('loginService', ['$q','$rootScope', function($q, $rootScope){
 
   var ref = new Firebase("https://appreciar.firebaseio.com");
 
@@ -16,6 +16,12 @@ app.service('loginService', ['$q', function($q){
     					console.log("Login Failed!", error);
               defered.reject(error);
     				} else {
+              $rootScope.perfilLogueado = {
+                nombre: "",
+                foto: "url('img/icon-profile.png');",
+                ocultarBotonIngresar: true,
+                ocultarFotoUsuario: false
+              };
     					console.log("Authenticated successfully with payload:", authData);
               defered.resolve(authData);
               //this.logueado = authData;
@@ -26,19 +32,47 @@ app.service('loginService', ['$q', function($q){
 	};
 
   /*A partir de la misma idea que para loguearse, armo el método de registración...*/
-  // this.registro = function(usuario){
-  //     //var defered = $q.defer();
-  //     ref.createUser(usuario, function(error, userData) {
-  //     if (error) {
-  //       console.log("Error creating user:", error);
-  //       //defered.reject(error);
-  //     } else {
-  //       console.log("Successfully created user account with uid:", userData.uid);
-  //       //defered.resolve(userData);
-  //     }
-  //   });
-  // };
+  this.registro = function(usuario){
+      var defered = $q.defer();
+      ref.createUser(usuario, function(error, userData) {
+      if (error) {
+        //console.log("Error creating user:", error);
+        defered.reject(error);
+      } else {
+        //console.log("Successfully created user account with uid:", userData.uid);
+        defered.resolve(userData);
+      }
+    });
+    return defered.promise;
+  };
 
+
+  this.loginRed = function(red){
+    var defered = $q.defer();
+    ref.authWithOAuthPopup(red, function(error, authData){
+      if(error){
+        defered.reject(error);
+      }else{
+        if(red === "twitter"){
+          $rootScope.perfilLogueado = {
+            nombre: authData.twitter.username,
+            foto: "url('" + authData.twitter.profileImageURL + "');",
+            ocultarBotonIngresar: true,
+            ocultarFotoUsuario: true
+          };
+        }else{
+          $rootScope.perfilLogueado = {
+            nombre: authData.facebook.displayName,
+            foto: "url('" + authData.facebook.profileImageURL + "');",
+            ocultarBotonIngresar: true,
+            ocultarFotoUsuario: true
+          };
+        }
+        defered.resolve(authData);
+      }
+    });
+    return defered.promise;
+  };
 
   // this.registro2 = function(usuario){
   //   ref.createUser(usuario, function(error, userData) {

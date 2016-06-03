@@ -1,7 +1,7 @@
-app.service('productService', ['$firebaseArray','$firebaseObject', function($firebaseArray,$firebaseObject){
+app.service('productService', ['$firebaseArray','$firebaseObject','$q', function($firebaseArray,$firebaseObject,$q){
 //app.service('productService', ['$q', function($q){
 
-  this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');  
+  this.myDataRef = new Firebase('https://appreciar.firebaseio.com/');
 
   this.getAll = function(accion) {
     this.accionRef = this.myDataRef.child(accion);
@@ -22,16 +22,22 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
     }
 
     this.productos = $firebaseArray(this.prodRef);
-    
+
     return this.productos;
   };
 
   this.agregarPost = function(post) {
-    this.datos.$add(post);
+    var defered = $q.defer();
+
+    this.datos.$add(post).then(function(ref){
+      defered.resolve();
+    });
 
     var postsProdRef = this.prodRef.child(post.codProd).child('posts');
     var postsProd = $firebaseArray(postsProdRef);
     postsProd.$add(post);
+
+    return defered.promise;
   };
 
   this.positivo = function(postId) {
@@ -45,7 +51,6 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
     });
   };
 
-
   this.negativo = function(postId) {
     var postIdRef = this.myDataRef.child('Posts').child(postId);
     var negativoRef = postIdRef.child('negativos');
@@ -56,4 +61,5 @@ app.service('productService', ['$firebaseArray','$firebaseObject', function($fir
       postIdRef.update({negativos:suma});
     });
   };
+
 }]);
