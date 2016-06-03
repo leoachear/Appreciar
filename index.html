@@ -82,11 +82,11 @@
             Ingresar
           </md-button>
           <!-- div con la imagen del usuario -->
-          <div class="usuario" style="background-image: {{perfilLogueado.foto}}" ng-hide="perfilLogueado.ocultarFotoUsuario">
+          <div class="usuario" style="background-image: {{perfilLogueado.foto}}" ng-hide="!(perfilLogueado.ocultarFotoUsuario)">
           </div>
-          <!-- <md-button class="md-icon-button" aria-label="More" ng-click="cambiarVista('login')">
+          <md-button class="md-icon-button" aria-label="More" ng-click="cambiarVista('login')" ng-hide="!(perfilLogueado.ocultarFotoUsuario)">
 	          <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
-	        </md-button> -->
+	        </md-button>
           <!-- acá va la fotito y el nombre. -->
 	      </div>
 	    </md-toolbar>

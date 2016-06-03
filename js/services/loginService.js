@@ -58,14 +58,14 @@ app.service('loginService', ['$q','$rootScope', function($q, $rootScope){
             nombre: authData.twitter.username,
             foto: "url('" + authData.twitter.profileImageURL + "');",
             ocultarBotonIngresar: true,
-            ocultarFotoUsuario: false
+            ocultarFotoUsuario: true
           };
         }else{
           $rootScope.perfilLogueado = {
-            nombre: authData.twitter.displayName,
-            foto: "url('" + authData.twitter.profileImageURL + "');",
+            nombre: authData.facebook.displayName,
+            foto: "url('" + authData.facebook.profileImageURL + "');",
             ocultarBotonIngresar: true,
-            ocultarFotoUsuario: false
+            ocultarFotoUsuario: true
           };
         }
         defered.resolve(authData);
