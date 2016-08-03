@@ -29,46 +29,35 @@
       -->
 
       <md-content layout-padding>
-      <form name="myForm">
-        <md-input-container class="md-block">
-          <md-select name="prod" placeholder="Seleccione el Producto" ng-model="producto_seleccionado" md-on-open="loadProductos()" style="min-width: 200px;" ng-required="true">
-            <md-option ng-value="producto" ng-repeat="producto in productosDesplegable">{{producto.nombre}}</md-option>
-          </md-select>
-          <div ng-messages="myForm.prod.$error">
-            <div ng-message="required">Producto es requerido.</div>
-          </div>
-        </md-input-container>
+        <md-select placeholder="Seleccione el Producto" ng-model="producto_seleccionado" md-on-open="loadProductos()" style="min-width: 200px;">
+          <md-option ng-value="producto" ng-repeat="producto in productosDesplegable">{{producto.nombre}}</md-option>
+        </md-select>
         <md-input-container>
-          <label>Precios</label>
-          <input name="name" ng-model="producto_precio" ng-required="true">
-          <div ng-messages="myForm.name.$error">
-            <div ng-message="required">Precio es requerido.</div>
-          </div>
+          <label>Precio</label>
+          <input ng-model="producto_precio">
         </md-input-container>
 
         <md-input-container class="md-block">
             <label>Dirección</label>
-            <input ng-model="view.addressInput" ng-model-options="{debounce: 3000}" ng-change="buscarDireccion()" />
+            <input ng-model="view.addressInput" ng-model-options="{debounce: 1000}" ng-change="buscarDireccion()" />
         </md-input-container>
-        <div class="md-block">
-          <md-input-container class="md-block">
+        <div layout="row">
+          <md-input-container flex="99">
             <label>Ubicaciones disponibles</label>
             <md-select ng-model="view.selectedPlace" ng-disabled="view.places.length < 2" ng-change="centrarUbicacion()">
               <md-option ng-repeat="place in view.places" value="{{place.place_id}}">{{place.formatted_address}}</md-option>
             </md-select>
           </md-input-container>
-          <md-button ng-click="postear()" class="md-raised md-primary" ng-disabled="!(producto_seleccionado && producto_precio)">Postear</md-button>
           <md-button class="md-icon-button" ng-click="borrarMarcadores()" ng-disabled="view.markers.length === 0">
             <md-icon md-svg-icon="white_delete" aria-label="Borrar"></md-icon>
             <md-tooltip md-delay="1500" md-autohide="true">Borrar</md-tooltip>
           </md-button>
         </div>
-        </form>
       </md-content>
 
           <div id="map" class="altura-mapa"></div>
 
-          
+          <md-button ng-click="postear()" class="md-raised md-primary">Postear</md-button>
           <!--
           <p class="md-caption">Seleccionaste el producto: {{ producto_seleccionado ? producto_seleccionado : 'Ninguna' }}</p>
           <p>Id de producto:  {{producto_seleccionado}}</p>
